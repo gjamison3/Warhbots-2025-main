@@ -12,7 +12,6 @@ import java.util.HashMap;
 
 // Gyro imports
 import com.ctre.phoenix6.hardware.Pigeon2;
-import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 // Import constants
 import frc.robot.Constants.SwerveConstants.ModulePosition;
@@ -201,7 +200,7 @@ public class SwerveDrivetrain extends SubsystemBase {
 
     // Misc getters
     /** @return The current direction the robot is facing in degrees */
-    public double getHeadingDegrees() { return -Math.IEEEremainder(gyro.getAngle(), 360); }
+    public double getHeadingDegrees() { return -Math.IEEEremainder(gyro.getYaw().getValueAsDouble(), 360); }
     /** @return The current direction the robot is facing as a {@link Rotation2d} object */
     public Rotation2d getHeadingRotation2d() { return Rotation2d.fromDegrees(getHeadingDegrees()); }
     /** Reset the heading of the robot, effectively changing the orientation of the field */

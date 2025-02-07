@@ -271,5 +271,7 @@ public class SwerveModule extends SubsystemBase {
         SmartDashboard.putNumber("Module " + moduleNumber + " Position", angleEncoder.getAbsolutePosition().getValueAsDouble() * 360);
         // Prints the speed of the swerve module 
         SmartDashboard.putNumber("Module " + moduleNumber + " Speed", getDriveMetersPerSecond());
+    
+        SmartDashboard.putNumber("Module" + moduleNumber + "Percieved Position", turnEncoder.getPosition());
     }
 }

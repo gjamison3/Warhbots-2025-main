@@ -45,8 +45,11 @@ public class RobotContainer {
         () -> driverController.getRightX()));
         
         // HOLD RT -> Drive in robot centric mode
-        driverController.rightTrigger().onTrue(new InstantCommand(() -> drivetrain.setFieldCentric(false)))
-        .onFalse(new InstantCommand(() -> drivetrain.setFieldCentric(true)));
+        driverController.rightTrigger()
+            .onTrue(new InstantCommand(() -> drivetrain.setFieldCentric(false)))
+            .onFalse(new InstantCommand(() -> drivetrain.setFieldCentric(true)));
+
+        driverController.rightTrigger().onTrue(new InstantCommand(() -> drivetrain.resetHeading()));
     }
 
     /** Configures a set of control bindings for the robot's operator */

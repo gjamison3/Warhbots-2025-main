@@ -80,10 +80,10 @@ public final class Constants {
 
         /** An array containing the position of each module as a {@link Translation2d} object */
         public static final Translation2d[] MODULE_TRANSLATIONS = {
-            new Translation2d(-WHEEL_BASE / 2, TRACK_WIDTH / 2),  // FL
-            new Translation2d(WHEEL_BASE / 2, TRACK_WIDTH / 2),   // FR
-            new Translation2d(-WHEEL_BASE / 2, -TRACK_WIDTH / 2), // RL
-            new Translation2d(WHEEL_BASE / 2, -TRACK_WIDTH / 2)   // RR
+            new Translation2d(WHEEL_BASE / 2, TRACK_WIDTH / 2),  // FR
+            new Translation2d(WHEEL_BASE / 2, -TRACK_WIDTH / 2), // RR
+            new Translation2d(-WHEEL_BASE / 2, TRACK_WIDTH / 2),   // FL
+            new Translation2d(-WHEEL_BASE / 2, -TRACK_WIDTH / 2),   // RL
         };
 
         // Kinematics are used to calculate how each module needs to move
@@ -137,7 +137,7 @@ public final class Constants {
         public static final RobotConfig PP_CONFIG = new RobotConfig(0, 0, PP_MODULE_CONFIG, MODULE_TRANSLATIONS);
     }
 
-  public static final class DriveConstants {
+    public static final class DriveConstants {
             /** Higher values make the robot drive more aggressively */
             public static final double TRANSLATION_SLEW = 4;
             /** Higher values make the robot spin more aggressively */
