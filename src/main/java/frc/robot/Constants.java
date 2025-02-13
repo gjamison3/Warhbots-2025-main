@@ -25,6 +25,18 @@ public final class Constants {
         public static final int OPERATOR_PORT = 1;
     }
 
+    /** IDs used by the elevator */
+    public static final class ElevatorIDs{
+        public static final int ELEVATOR_LEFT_ID = 10;
+        public static final int ELEVATOR_RIGHT_ID = 11;
+    }
+
+    /** IDs used by the intake */
+    public static final class IntakeIDs{
+        public static final int INTAKE_DRIVER_ID = 12;
+        public static final int INTAKE_PIVOT_ID = 13;
+    }
+
     /** IDs used by the swerve drivetrain.
         3X for turning, 4X for driving, 5X for abs encoders. */
     public static final class SwerveIDs {
@@ -50,10 +62,10 @@ public final class Constants {
 
     /** Turning a module to absolute 0 minus its offset will point it forward */
     public static final class SwerveModuleOffsets {
-        public static final double FL_OFFSET = -76.729;
-        public static final double FR_OFFSET = 68.6426;
-        public static final double RL_OFFSET = 134.5605;
-        public static final double RR_OFFSET = 36.6504;
+        public static final double FL_OFFSET = -76.73;
+        public static final double FR_OFFSET = 68.64;
+        public static final double RL_OFFSET = 134.56;
+        public static final double RR_OFFSET = 36.65;
     }
 
     /** Whether or not each swerve component should be inverted/reversed */
@@ -74,9 +86,9 @@ public final class Constants {
     /** Constants related to swerve calculations */
     public static final class SwerveConstants {
         /** The distance between the left and right wheels in inches */
-        public static final double TRACK_WIDTH = Units.inchesToMeters(22.625);
+        public static final double TRACK_WIDTH = Units.inchesToMeters(22.750);
         /** The distance between the front and rear wheels in inches */
-        public static final double WHEEL_BASE = Units.inchesToMeters(22.5);
+        public static final double WHEEL_BASE = Units.inchesToMeters(22.750);
 
         /** An array containing the position of each module as a {@link Translation2d} object */
         public static final Translation2d[] MODULE_TRANSLATIONS = {
@@ -110,7 +122,7 @@ public final class Constants {
             public static final double TURN_RATIO = 1 / ((14.0 / 50.0) * (10.0 / 60.0));
             
             /** The diameter of the wheels measured in meters */
-            public static final double WHEEL_DIAMETER = Units.inchesToMeters(4);
+            public static final double WHEEL_DIAMETER = Units.inchesToMeters(3.94);
 
             /** Drive motor revolutions * DRIVE_REVS_TO_M = distance in meters */
             public static final double DRIVE_REVS_TO_M = ((WHEEL_DIAMETER * Math.PI) / DRIVE_RATIO_FAST);
