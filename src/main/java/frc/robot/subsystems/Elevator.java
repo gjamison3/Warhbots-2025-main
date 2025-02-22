@@ -49,6 +49,7 @@ public class Elevator extends SubsystemBase {
     
     // Getters
     public double getPosition() { return leader.getEncoder().getPosition(); }
+    public double getTargetPosition() { return targetPosition.getElevatorHeight(); }
     public boolean atSetpoint() { return pidController.atSetpoint(); }
 
     /** Sends voltage to the elevator to drive it to a position */

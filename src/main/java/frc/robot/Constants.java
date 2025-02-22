@@ -69,6 +69,7 @@ public final class Constants {
         public static final double PIVOT_MAX = 0;
 
         public enum UpperChassisPose {
+            /** It is assumed that the elevator is safe to move when the pivot is at 0 */
             ZERO(0, 0),
             L1_SCORE(0, 0),
             L2_SCORE(0, 0),

@@ -51,7 +51,10 @@ public class RobotContainer {
         drivetrain.setDefaultCommand(new SwerveDriveCommand(drivetrain, 
         () -> driverController.getLeftX(),
         () -> driverController.getLeftY(),
-        () -> driverController.getRightX()));
+        () -> driverController.getRightX(),
+        // 10 is placeholder for maxHeight before speed reduction
+        // .5 is placeholder for slow speed, 1 is placeholder for fast speed
+        () -> elevator.getPosition() > 10 ? .5 : 1));
         
         // HOLD RT -> Drive in robot centric mode
         driverController.leftTrigger()
@@ -68,7 +71,7 @@ public class RobotContainer {
         operatorController.y().onTrue(new SetUpperChassisPose(elevator, pivot, UpperChassisPose.L4_SCORE));
         operatorController.a().onTrue(new SetUpperChassisPose(elevator, pivot, UpperChassisPose.L1_SCORE));
         //operatorController.rightTrigger().whileTrue(/** Intake */);
-        //operatorController.leftTrigger().whileTrue(/** Shoot */);\
+        //operatorController.leftTrigger().whileTrue(/** Shoot */);
         operatorController.pov(0).onTrue(new SetUpperChassisPose(elevator, pivot, UpperChassisPose.L3_REMOVE));
         operatorController.pov(180).onTrue(new SetUpperChassisPose(elevator, pivot, UpperChassisPose.L2_REMOVE));
         operatorController.pov(90).onTrue(new SetUpperChassisPose(elevator, pivot, UpperChassisPose.PROCESSOR_SCORE));
