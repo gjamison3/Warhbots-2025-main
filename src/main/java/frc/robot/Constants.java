@@ -56,6 +56,39 @@ public final class Constants {
 
     /* -------------- SUBSYTEM CONSTANTS -------------- */
 
+    public static final class UpperChassisConstants {
+        public static final double ELEVATOR_RATIO = 1;
+        public static final double ELEVATOR_VEL_LIMIT = 0;
+        public static final double ELEVATOR_ACCEL_LIMIT = 0;
+        public static final double ELEVATOR_P = 0;
+        public static final double ELEVATOR_D = 0;
+
+        public static final double PIVOT_RATIO = 1;
+        public static final double PIVOT_P = 0;
+        public static final double PIVOT_MIN = 0;
+        public static final double PIVOT_MAX = 0;
+
+        public enum UpperChassisPose {
+            ZERO(0, 0),
+            L1_SCORE(0, 0),
+            L2_SCORE(0, 0),
+            L3_SCORE(0, 0),
+            L4_SCORE(0, 0),
+            L2_REMOVE(0, 0),
+            L3_REMOVE(0, 0),
+            PROCESSOR_SCORE(0, 0);
+
+            private final double elevatorHeight;
+            private final double pivotAngle;
+            UpperChassisPose(double height, double angle) {
+                this.elevatorHeight = height;
+                this.pivotAngle = angle;
+            }
+            public double getElevatorHeight() { return elevatorHeight; }
+            public double getPivotAngle() { return pivotAngle; }
+        }
+    }
+
     /** Turning a module to absolute 0 minus its offset will point it forward */
     public static final class SwerveModuleOffsets {
         public static final double FL_OFFSET = -76.729;

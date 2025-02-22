@@ -23,8 +23,12 @@ public class SwerveDriveCommand extends Command {
      * @param translationInputY The forward/back translation instruction
      * @param rotation The rotational instruction
     */
-    public SwerveDriveCommand(SwerveDrivetrain drivetrain, DoubleSupplier translationInputX, DoubleSupplier translationInputY, DoubleSupplier rotationInput) {
-
+    public SwerveDriveCommand(
+        SwerveDrivetrain drivetrain, 
+        DoubleSupplier translationInputX, 
+        DoubleSupplier translationInputY, 
+        DoubleSupplier rotationInput
+    ) {
         // Initialize internal variables with values passed through params
         this.drivetrain = drivetrain;
         this.inputX = translationInputX;
