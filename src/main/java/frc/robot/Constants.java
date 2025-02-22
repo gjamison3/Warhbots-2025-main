@@ -25,6 +25,14 @@ public final class Constants {
         public static final int OPERATOR_PORT = 1;
     }
 
+    public static final class SubsystemIDs {
+        public static final int ELEVATOR_LEFT_MOTOR = 10;
+        public static final int ELEVATOR_RIGHT_MOTOR = 11;
+        public static final int PIVOT_MOTOR = 12;
+        public static final int INTAKE_MOTOR = 13;
+        public static final int INTAKE_SENSOR = 23;
+    }
+
     /** IDs used by the swerve drivetrain.
         3X for turning, 4X for driving, 5X for abs encoders. */
     public static final class SwerveIDs {
