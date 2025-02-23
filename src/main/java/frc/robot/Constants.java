@@ -71,13 +71,13 @@ public final class Constants {
         public enum UpperChassisPose {
             /** It is assumed that the elevator is safe to move when the pivot is at 0 */
             ZERO(0, 3.3),
-            L1_SCORE(-5, 3.3),
+            L1_SCORE(5, 3.3),
             L2_SCORE(5, 3.3),
             L3_SCORE(10, 3.3),
             L4_SCORE(10, 3.3),
             L2_REMOVE(10, 3.3),
             L3_REMOVE(10, 3.3),
-            PROCESSOR_SCORE(0, 0);
+            PROCESSOR_SCORE(0, 3.3);
 
             private final double elevatorHeight;
             private final double pivotAngle;

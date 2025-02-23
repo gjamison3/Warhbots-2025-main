@@ -7,6 +7,7 @@ import static frc.robot.Constants.ControllerPorts.*;
 import frc.robot.subsystems.drivetrain.SwerveDrivetrain;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Pivot;
+import frc.robot.subsystems.Shooter;
 // Command imports
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -28,6 +29,7 @@ public class RobotContainer {
     public final SwerveDrivetrain drivetrain = new SwerveDrivetrain();
     public final Elevator elevator = new Elevator();
     public final Pivot pivot = new Pivot();
+    public final Shooter shooter = new Shooter();
 
     private final AutonContainer auton = new AutonContainer(this);
     private final SendableChooser<Command> autonChooser = auton.buildAutonChooser();
@@ -54,7 +56,7 @@ public class RobotContainer {
         () -> driverController.getRightX(),
         // 10 is placeholder for maxHeight before speed reduction
         // .5 is placeholder for slow speed, 1 is placeholder for fast speed
-        () -> elevator.getPosition() > 20 ? .5 : 1));
+        () -> (elevator.getPosition() > 10 || driverController.rightBumper().getAsBoolean()) ? .5 : 1));
         
         // HOLD RT -> Drive in robot centric mode
         driverController.leftTrigger()
@@ -70,8 +72,8 @@ public class RobotContainer {
         operatorController.b().onTrue(new SetUpperChassisPose(elevator, pivot, UpperChassisPose.L3_SCORE));
         operatorController.y().onTrue(new SetUpperChassisPose(elevator, pivot, UpperChassisPose.L4_SCORE));
         operatorController.a().onTrue(new SetUpperChassisPose(elevator, pivot, UpperChassisPose.L1_SCORE));
-        //operatorController.rightTrigger().whileTrue(/** Intake */);
-        //operatorController.leftTrigger().whileTrue(/** Shoot */);
+        operatorController.rightTrigger().whileTrue(shooter.intake(.3));
+        operatorController.leftTrigger().whileTrue(shooter.shoot(.5));
         operatorController.pov(0).onTrue(new SetUpperChassisPose(elevator, pivot, UpperChassisPose.L3_REMOVE));
         operatorController.pov(180).onTrue(new SetUpperChassisPose(elevator, pivot, UpperChassisPose.L2_REMOVE));
         operatorController.pov(90).onTrue(new SetUpperChassisPose(elevator, pivot, UpperChassisPose.PROCESSOR_SCORE));

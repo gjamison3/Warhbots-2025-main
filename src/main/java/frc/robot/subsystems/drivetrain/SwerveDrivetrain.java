@@ -110,7 +110,7 @@ public class SwerveDrivetrain extends SubsystemBase {
      *  @return The processed output ready to be sent to the drivetrain */
     public double preprocessX(double input) {
         double deadbanded = MathUtil.applyDeadband(input, .05);
-        double squared = Math.signum(deadbanded) * Math.pow(deadbanded, 2);
+        double squared = -Math.signum(deadbanded) * Math.pow(deadbanded, 2);
         double output = slewX.calculate(squared);
 
         return output;
@@ -200,7 +200,7 @@ public class SwerveDrivetrain extends SubsystemBase {
 
     // Misc getters
     /** @return The current direction the robot is facing in degrees */
-    public double getHeadingDegrees() { return -Math.IEEEremainder(gyro.getYaw().getValueAsDouble(), 360); }
+    public double getHeadingDegrees() { return Math.IEEEremainder(gyro.getYaw().getValueAsDouble(), 360); }
     /** @return The current direction the robot is facing as a {@link Rotation2d} object */
     public Rotation2d getHeadingRotation2d() { return Rotation2d.fromDegrees(getHeadingDegrees()); }
     /** Reset the heading of the robot, effectively changing the orientation of the field */

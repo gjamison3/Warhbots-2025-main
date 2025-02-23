@@ -56,7 +56,7 @@ public class Elevator extends SubsystemBase {
     public void driveToPosition(UpperChassisPose position) {
         targetPosition = position;
         double pidout = pidController.calculate(getPosition(), position.getElevatorHeight());
-        leader.setVoltage(pidout * RobotController.getBatteryVoltage());
+        leader.setVoltage(-pidout * RobotController.getBatteryVoltage());
     }   
 
 
