@@ -25,6 +25,14 @@ public final class Constants {
         public static final int OPERATOR_PORT = 1;
     }
 
+    public static final class SubsystemIDs {
+        public static final int ELEVATOR_LEFT_MOTOR = 10;
+        public static final int ELEVATOR_RIGHT_MOTOR = 11;
+        public static final int PIVOT_MOTOR = 12;
+        public static final int INTAKE_MOTOR = 13;
+        public static final int INTAKE_SENSOR = 23;
+    }
+
     /** IDs used by the swerve drivetrain.
         3X for turning, 4X for driving, 5X for abs encoders. */
     public static final class SwerveIDs {
@@ -47,6 +55,40 @@ public final class Constants {
     }
 
     /* -------------- SUBSYTEM CONSTANTS -------------- */
+
+    public static final class UpperChassisConstants {
+        public static final double ELEVATOR_RATIO = 1;
+        public static final double ELEVATOR_VEL_LIMIT = 100;
+        public static final double ELEVATOR_ACCEL_LIMIT = 20;
+        public static final double ELEVATOR_P = 0.225;
+        public static final double ELEVATOR_D = 0.05;
+
+        public static final double PIVOT_RATIO = 1;
+        public static final double PIVOT_P = 0.27;
+        public static final double PIVOT_MIN = 0;
+        public static final double PIVOT_MAX = 4;
+
+        public enum UpperChassisPose {
+            /** It is assumed that the elevator is safe to move when the pivot is at 0 */
+            ZERO(0, 3.3),
+            L1_SCORE(5, 3.3),
+            L2_SCORE(5, 3.3),
+            L3_SCORE(10, 3.3),
+            L4_SCORE(10, 3.3),
+            L2_REMOVE(10, 3.3),
+            L3_REMOVE(10, 3.3),
+            PROCESSOR_SCORE(0, 3.3);
+
+            private final double elevatorHeight;
+            private final double pivotAngle;
+            UpperChassisPose(double height, double angle) {
+                this.elevatorHeight = height;
+                this.pivotAngle = angle;
+            }
+            public double getElevatorHeight() { return elevatorHeight; }
+            public double getPivotAngle() { return pivotAngle; }
+        }
+    }
 
     /** Turning a module to absolute 0 minus its offset will point it forward */
     public static final class SwerveModuleOffsets {

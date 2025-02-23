@@ -14,6 +14,7 @@ public class SwerveDriveCommand extends Command {
     private final DoubleSupplier inputY;
     private final DoubleSupplier inputX;
     private final DoubleSupplier inputRot;
+    private final DoubleSupplier speedScalar;
 
     /** 
      * Constructs a DriveCommand
@@ -23,13 +24,19 @@ public class SwerveDriveCommand extends Command {
      * @param translationInputY The forward/back translation instruction
      * @param rotation The rotational instruction
     */
-    public SwerveDriveCommand(SwerveDrivetrain drivetrain, DoubleSupplier translationInputX, DoubleSupplier translationInputY, DoubleSupplier rotationInput) {
-
+    public SwerveDriveCommand(
+        SwerveDrivetrain drivetrain, 
+        DoubleSupplier translationInputX, 
+        DoubleSupplier translationInputY, 
+        DoubleSupplier rotationInput,
+        DoubleSupplier speedScalar
+    ) {
         // Initialize internal variables with values passed through params
         this.drivetrain = drivetrain;
         this.inputX = translationInputX;
         this.inputY = translationInputY;
         this.inputRot = rotationInput;
+        this.speedScalar = speedScalar;
         
         // Tell the Command that this command uses the drivetrain
         addRequirements(drivetrain);
@@ -42,7 +49,10 @@ public class SwerveDriveCommand extends Command {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        drivetrain.drive(inputX.getAsDouble(), inputY.getAsDouble(), inputRot.getAsDouble());
+        drivetrain.drive(
+            inputX.getAsDouble() * speedScalar.getAsDouble(), 
+            inputY.getAsDouble() * speedScalar.getAsDouble(), 
+            inputRot.getAsDouble() * speedScalar.getAsDouble());
     }
 
     // Called once the command ends or is interrupted.

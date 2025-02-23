@@ -26,6 +26,7 @@ public class Robot extends TimedRobot {
 
         // Construct the robot container
         robotContainer = new RobotContainer();
+        CommandScheduler.getInstance().cancelAll();
     }
 
     // This function is called once at the start of auton
