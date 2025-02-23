@@ -21,12 +21,12 @@ public class Elevator extends SubsystemBase {
     private SparkMax leader;
     private SparkMax follower;
     private ProfiledPIDController pidController;
-    private UpperChassisPose targetPosition;
+    private UpperChassisPose targetPosition = UpperChassisPose.ZERO;
 
     public Elevator() {
         leader = new SparkMax(ELEVATOR_LEFT_MOTOR, MotorType.kBrushless);
         follower = new SparkMax(ELEVATOR_RIGHT_MOTOR, MotorType.kBrushless);
-        pidController = new ProfiledPIDController(PIVOT_P, 0, ELEVATOR_D,
+        pidController = new ProfiledPIDController(ELEVATOR_P, 0, ELEVATOR_D,
             new TrapezoidProfile.Constraints(ELEVATOR_VEL_LIMIT, ELEVATOR_ACCEL_LIMIT));
         pidController.setTolerance(1);
         
@@ -35,7 +35,7 @@ public class Elevator extends SubsystemBase {
         leader.configure(leaderConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
         
         SparkMaxConfig followerConfig = new SparkMaxConfig();
-        followerConfig.follow(leader, true);
+        followerConfig.follow(leader, false);
         follower.configure(followerConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
     }
 

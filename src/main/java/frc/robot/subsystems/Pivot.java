@@ -46,8 +46,8 @@ public class Pivot extends SubsystemBase {
 
     @Override
     public void periodic() {
-        SmartDashboard.putNumber("Elevator Position", getPosition());
-        SmartDashboard.putNumber("Elevator Target", targetPosition.getPivotAngle());
-        SmartDashboard.putBoolean("Elevator at Target", atSetpoint());
+        SmartDashboard.putNumber("Shooter Position", getPosition());
+        SmartDashboard.putNumber("Shooter Target", targetPosition.getPivotAngle());
+        SmartDashboard.putBoolean("Shooter at Target", atSetpoint());
     }
 }

@@ -110,7 +110,7 @@ public class SwerveDrivetrain extends SubsystemBase {
      *  @return The processed output ready to be sent to the drivetrain */
     public double preprocessX(double input) {
         double deadbanded = MathUtil.applyDeadband(input, .05);
-        double squared = -Math.signum(deadbanded) * Math.pow(deadbanded, 2);
+        double squared = Math.signum(deadbanded) * Math.pow(deadbanded, 2);
         double output = slewX.calculate(squared);
 
         return output;
