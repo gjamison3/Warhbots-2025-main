@@ -6,7 +6,7 @@ import edu.wpi.first.cameraserver.CameraServer;
 // Command imports
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-
+import frc.robot.Constants.UpperChassisConstants.UpperChassisPose;
 // Misc imports
 import edu.wpi.first.wpilibj.TimedRobot;
 
@@ -47,6 +47,7 @@ public class Robot extends TimedRobot {
     @Override
     public void teleopInit() {
         // This makes sure that the autonomous command stops when teleop starts
+        CommandScheduler.getInstance().cancelAll();
         if (autonCommand != null)
             autonCommand.cancel();
     }
@@ -59,9 +60,15 @@ public class Robot extends TimedRobot {
     @Override
     public void robotPeriodic() {    
         // Run any functions that always need to be running
+        
         CommandScheduler.getInstance().run();
     }
 
     @Override
     public void testPeriodic() {}
+
+    @Override
+    public void disabledInit(){
+        CommandScheduler.getInstance().schedule(robotContainer.elevator.elevateToPosition(UpperChassisPose.ZERO));
+    }
 }

@@ -58,10 +58,10 @@ public final class Constants {
 
     public static final class UpperChassisConstants {
         public static final double ELEVATOR_RATIO = 1;
-        public static final double ELEVATOR_VEL_LIMIT = 20;
-        public static final double ELEVATOR_ACCEL_LIMIT = 5;
-        public static final double ELEVATOR_P = 0.125;
-        public static final double ELEVATOR_D = 0.05;
+        public static final double ELEVATOR_VEL_LIMIT = 100;
+        public static final double ELEVATOR_ACCEL_LIMIT = 20;
+        public static final double ELEVATOR_P = 0.25;
+        public static final double ELEVATOR_D = 0.005;
 
         public static final double PIVOT_RATIO = 1;
         public static final double PIVOT_P = 0.1;
@@ -70,7 +70,7 @@ public final class Constants {
 
         public enum UpperChassisPose {
             /** It is assumed that the elevator is safe to move when the pivot is at 0 */
-            ZERO(0.0, 0.0),
+            ZERO(0, 0.0),
             L1_SCORE(0, 3.3),
             L2_SCORE(5.07, 3.3),
             L3_SCORE(14.07, 3.3),
