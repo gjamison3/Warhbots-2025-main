@@ -22,7 +22,8 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class RobotContainer {
+public class RobotContainer 
+{
     private final CommandXboxController driverController = new CommandXboxController(DRIVER_PORT);
     private final CommandXboxController operatorController = new CommandXboxController(OPERATOR_PORT);
 
@@ -71,7 +72,7 @@ public class RobotContainer {
         operatorController.x().onTrue(new SetUpperChassisPose(elevator, pivot, UpperChassisPose.L2_SCORE));
         operatorController.b().onTrue(new SetUpperChassisPose(elevator, pivot, UpperChassisPose.L3_SCORE));
         operatorController.y().onTrue(new SetUpperChassisPose(elevator, pivot, UpperChassisPose.L4_SCORE));
-        operatorController.a().onTrue(new SetUpperChassisPose(elevator, pivot, UpperChassisPose.L1_SCORE));
+        operatorController.a().onTrue(new SetUpperChassisPose(elevator, pivot, UpperChassisPose.ZERO));
         operatorController.rightTrigger().whileTrue(shooter.intake(.3));
         operatorController.leftTrigger().whileTrue(shooter.shoot(.5));
         operatorController.pov(0).onTrue(new SetUpperChassisPose(elevator, pivot, UpperChassisPose.L3_REMOVE));

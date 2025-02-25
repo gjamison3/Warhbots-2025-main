@@ -58,26 +58,26 @@ public final class Constants {
 
     public static final class UpperChassisConstants {
         public static final double ELEVATOR_RATIO = 1;
-        public static final double ELEVATOR_VEL_LIMIT = 100;
-        public static final double ELEVATOR_ACCEL_LIMIT = 20;
-        public static final double ELEVATOR_P = 0.225;
+        public static final double ELEVATOR_VEL_LIMIT = 20;
+        public static final double ELEVATOR_ACCEL_LIMIT = 5;
+        public static final double ELEVATOR_P = 0.125;
         public static final double ELEVATOR_D = 0.05;
 
         public static final double PIVOT_RATIO = 1;
-        public static final double PIVOT_P = 0.27;
+        public static final double PIVOT_P = 0.1;
         public static final double PIVOT_MIN = 0;
-        public static final double PIVOT_MAX = 4;
+        public static final double PIVOT_MAX = 25;
 
         public enum UpperChassisPose {
             /** It is assumed that the elevator is safe to move when the pivot is at 0 */
-            ZERO(0, 3.3),
-            L1_SCORE(5, 3.3),
-            L2_SCORE(5, 3.3),
-            L3_SCORE(10, 3.3),
-            L4_SCORE(10, 3.3),
-            L2_REMOVE(10, 3.3),
-            L3_REMOVE(10, 3.3),
-            PROCESSOR_SCORE(0, 3.3);
+            ZERO(0.0, 0.0),
+            L1_SCORE(0, 3.3),
+            L2_SCORE(5.07, 3.3),
+            L3_SCORE(14.07, 3.3),
+            L4_SCORE(32.0, 8.5),
+            L2_REMOVE(10.80, 23.93),
+            L3_REMOVE(21.21, 23.93),
+            PROCESSOR_SCORE(0.07, 21.78);
 
             private final double elevatorHeight;
             private final double pivotAngle;
@@ -116,9 +116,9 @@ public final class Constants {
     /** Constants related to swerve calculations */
     public static final class SwerveConstants {
         /** The distance between the left and right wheels in inches */
-        public static final double TRACK_WIDTH = Units.inchesToMeters(22.625);
+        public static final double TRACK_WIDTH = Units.inchesToMeters(22.75);
         /** The distance between the front and rear wheels in inches */
-        public static final double WHEEL_BASE = Units.inchesToMeters(22.5);
+        public static final double WHEEL_BASE = Units.inchesToMeters(22.75);
 
         /** An array containing the position of each module as a {@link Translation2d} object */
         public static final Translation2d[] MODULE_TRANSLATIONS = {
@@ -147,7 +147,7 @@ public final class Constants {
             /** The ratio of the drive motors on the workhorse chassis */
             public static final double DRIVE_RATIO_SLOW = 1 / ((14.0 / 50.0) * (25.0 / 19.0) * (15.0 / 45.0));
             /** The ratio of the drive motors on the robot */
-            public static final double DRIVE_RATIO_FAST = 1 / ((14.0 / 50.0) * (27.0 / 17.0) * (15.0 / 45.0));
+            public static final double DRIVE_RATIO_FAST = 1 / ((14.0 / 50.0) * (28.0 / 16.0) * (15.0 / 45.0));
             /** The ratio of the turning motors */
             public static final double TURN_RATIO = 1 / ((14.0 / 50.0) * (10.0 / 60.0));
             

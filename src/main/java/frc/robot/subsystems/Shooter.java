@@ -26,13 +26,13 @@ public class Shooter extends SubsystemBase {
 
     
     public Command intake(double speed) { // Need to calibrate detection distance
-        return runEnd(() -> motor.set(speed),
+        return runEnd(() -> motor.set(-speed),
             () -> motor.set(0))
             .until(() -> sensor.getDistance().getValueAsDouble() < 0/* distance */);
     }
 
     public Command shoot(double speed) { // Need to calibrate detection distance
-        return runEnd(() -> motor.set(speed),
+        return runEnd(() -> motor.set(-speed),
             () -> motor.set(0));
     }
 }
