@@ -10,9 +10,9 @@ import frc.robot.subsystems.Pivot;
 public class SetUpperChassisPose extends SequentialCommandGroup{
     public SetUpperChassisPose(Elevator elevator, Pivot pivot, UpperChassisPose pose){
         addCommands(
-            pivot.goToPosition(UpperChassisPose.L1_SCORE),
-            elevator.elevateToPosition(pose),
-            pivot.goToPosition(pose)
+            //pivot.goToPosition(UpperChassisPose.L1_SCORE),
+            //elevator.elevateToPosition(pose),
+            //pivot.goToPosition(pose)
         );
     }
 }

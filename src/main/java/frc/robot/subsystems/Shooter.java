@@ -4,6 +4,7 @@ import static frc.robot.Constants.SubsystemIDs.INTAKE_MOTOR;
 import static frc.robot.Constants.SubsystemIDs.INTAKE_SENSOR;
 
 import com.revrobotics.spark.SparkLowLevel.MotorType;
+import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 import com.revrobotics.spark.config.SparkMaxConfig;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -19,16 +20,23 @@ public class Shooter extends SubsystemBase {
     public Shooter() {
         motor = new SparkMax(INTAKE_MOTOR, MotorType.kBrushless);
         SparkMaxConfig motorConfig = new SparkMaxConfig();
+        motorConfig.smartCurrentLimit(10);
+        motorConfig.idleMode(IdleMode.kBrake);
         motor.configure(motorConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
 
         sensor = new CANrange(INTAKE_SENSOR);
     }
 
     
-    public Command intake(double speed) { // Need to calibrate detection distance
+    public Command intakeIn(double speed) { // Need to calibrate detection distance
         return runEnd(() -> motor.set(-speed),
-            () -> motor.set(0))
-            .until(() -> sensor.getDistance().getValueAsDouble() < 0/* distance */);
+            () -> motor.set(0));
+            //.until(() -> sensor.getDistance().getValueAsDouble() < 0/* distance */);
+    }
+
+    public Command intakeBack(double speed) {
+        return runEnd(() -> motor.set(speed),
+            () -> motor.set(0));
     }
 
     public Command shoot(double speed) { // Need to calibrate detection distance

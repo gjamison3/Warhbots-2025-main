@@ -57,11 +57,11 @@ public final class Constants {
     /* -------------- SUBSYTEM CONSTANTS -------------- */
 
     public static final class UpperChassisConstants {
-        public static final double ELEVATOR_RATIO = 1;
+        public static final double ELEVATOR_RATIO = 1; // 1/(25.4)*(1/19.180168)?
         public static final double ELEVATOR_VEL_LIMIT = 20;
         public static final double ELEVATOR_ACCEL_LIMIT = 5;
-        public static final double ELEVATOR_P = 0.125;
-        public static final double ELEVATOR_D = 0.05;
+        public static final double ELEVATOR_P = 0.125;//0.225
+        public static final double ELEVATOR_D = 0.05;//0.005
 
         public static final double PIVOT_RATIO = 1;
         public static final double PIVOT_P = 0.1;
@@ -86,7 +86,7 @@ public final class Constants {
                 this.pivotAngle = angle;
             }
             public double getElevatorHeight() { return elevatorHeight; }
-            public double getPivotAngle() { return pivotAngle; }
+            //public double getPivotAngle() { return pivotAngle; }
         }
     }
 

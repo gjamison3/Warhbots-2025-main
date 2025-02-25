@@ -12,9 +12,9 @@ import frc.robot.subsystems.Shooter;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
-import frc.robot.Constants.UpperChassisConstants.UpperChassisPose;
+//import frc.robot.Constants.UpperChassisConstants.UpperChassisPose;
 import frc.robot.commands.AutonContainer;
-import frc.robot.commands.SetUpperChassisPose;
+//import frc.robot.commands.SetUpperChassisPose;
 import frc.robot.commands.SwerveDriveCommand;
 import edu.wpi.first.wpilibj.DriverStation;
 
@@ -55,29 +55,40 @@ public class RobotContainer
         () -> driverController.getLeftX(),
         () -> driverController.getLeftY(),
         () -> driverController.getRightX(),
+
+        // HOLD RB -> drive slow
         // 10 is placeholder for maxHeight before speed reduction
         // .5 is placeholder for slow speed, 1 is placeholder for fast speed
         () -> (elevator.getPosition() > 10 || driverController.rightBumper().getAsBoolean()) ? .5 : 1));
         
-        // HOLD RT -> Drive in robot centric mode
+        // HOLD LT -> Drive in robot centric mode
         driverController.leftTrigger()
             .onTrue(new InstantCommand(() -> drivetrain.setFieldCentric(false)))
             .onFalse(new InstantCommand(() -> drivetrain.setFieldCentric(true)));
 
+        // PRESS LB -> reset gyro heading to current front position    
         driverController.leftBumper().onTrue(new InstantCommand(() -> drivetrain.resetHeading()));
+
+        // PRESS RT -> score coral
+        driverController.rightTrigger().whileTrue(shooter.shoot(.5));
     }
 
     /** Configures a set of control bindings for the robot's operator */
     private void setOperatorControls() {
-        operatorController.x().onTrue(new SetUpperChassisPose(elevator, pivot, UpperChassisPose.L2_SCORE));
-        operatorController.b().onTrue(new SetUpperChassisPose(elevator, pivot, UpperChassisPose.L3_SCORE));
-        operatorController.y().onTrue(new SetUpperChassisPose(elevator, pivot, UpperChassisPose.L4_SCORE));
-        operatorController.a().onTrue(new SetUpperChassisPose(elevator, pivot, UpperChassisPose.ZERO));
-        operatorController.rightTrigger().whileTrue(shooter.intake(.3));
-        operatorController.leftTrigger().whileTrue(shooter.shoot(.5));
-        operatorController.pov(0).onTrue(new SetUpperChassisPose(elevator, pivot, UpperChassisPose.L3_REMOVE));
-        operatorController.pov(180).onTrue(new SetUpperChassisPose(elevator, pivot, UpperChassisPose.L2_REMOVE));
-        operatorController.pov(90).onTrue(new SetUpperChassisPose(elevator, pivot, UpperChassisPose.PROCESSOR_SCORE));
+        //operatorController.x().onTrue(new SetUpperChassisPose(elevator, pivot, UpperChassisPose.L2_SCORE));
+        //operatorController.b().onTrue(new SetUpperChassisPose(elevator, pivot, UpperChassisPose.L3_SCORE));
+        //operatorController.y().onTrue(new SetUpperChassisPose(elevator, pivot, UpperChassisPose.L4_SCORE));
+        //operatorController.a().onTrue(new SetUpperChassisPose(elevator, pivot, UpperChassisPose.ZERO));
+        operatorController.rightTrigger().whileTrue(shooter.intakeIn(.3)); //intake in
+        operatorController.leftTrigger().whileTrue(shooter.intakeBack(.3)); //intake back
+        //operatorController.leftTrigger().whileTrue(shooter.shoot(.5));
+        //operatorController.pov(0).onTrue(new SetUpperChassisPose(elevator, pivot, UpperChassisPose.L3_REMOVE));
+        //operatorController.pov(180).onTrue(new SetUpperChassisPose(elevator, pivot, UpperChassisPose.L2_REMOVE));
+        //operatorController.pov(90).onTrue(new SetUpperChassisPose(elevator, pivot, UpperChassisPose.PROCESSOR_SCORE));
+        operatorController.y().whileTrue(elevator.up(.3)); //elevator up
+        operatorController.a().whileTrue(elevator.down(.1)); //elevator down
+        operatorController.x().whileTrue(pivot.pivotOut(.10)); //pivot out
+        operatorController.b().whileTrue(pivot.pivotIn(.10)); //pivot in
     }
         
     

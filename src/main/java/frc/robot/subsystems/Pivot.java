@@ -7,6 +7,7 @@ import frc.robot.Constants.UpperChassisConstants.UpperChassisPose;
 import frc.robot.wrappers.GenericPID;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 import com.revrobotics.spark.config.SparkMaxConfig;
+import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -29,16 +30,28 @@ public class Pivot extends SubsystemBase {
 
         SparkMaxConfig config = new SparkMaxConfig();
         config.encoder.positionConversionFactor(PIVOT_RATIO);
+        config.smartCurrentLimit(20);
+        config.idleMode(IdleMode.kBrake);
         motor.configure(config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+        
     }
 
 
-    public Command goToPosition(UpperChassisPose position) {
-        targetPosition = position;
-        return run(() -> pidController.activate(position.getPivotAngle()))
-            .until(() -> atSetpoint());
+    //public Command goToPosition(UpperChassisPose position) {
+        //targetPosition = position;
+        //return run(() -> pidController.activate(position.getPivotAngle()))
+            //.until(() -> atSetpoint());
+    //}
+
+    public Command pivotOut(double speed) {
+        return runEnd(() -> motor.set(speed),
+            () -> motor.set(0));
     }
 
+    public Command pivotIn(double speed) {
+        return runEnd(() -> motor.set(-speed),
+            () -> motor.set(0));
+    }
 
     // Getters
     public boolean atSetpoint() { return pidController.atSetpoint(1); }
@@ -47,7 +60,7 @@ public class Pivot extends SubsystemBase {
     @Override
     public void periodic() {
         SmartDashboard.putNumber("Shooter Position", getPosition());
-        SmartDashboard.putNumber("Shooter Target", targetPosition.getPivotAngle());
+        //SmartDashboard.putNumber("Shooter Target", targetPosition.getPivotAngle());
         SmartDashboard.putBoolean("Shooter at Target", atSetpoint());
     }
 }
