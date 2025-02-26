@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.robot.Constants.UpperChassisConstants.UpperChassisPose;
+import frc.robot.commands.AlgaeScore;
 import frc.robot.commands.AutonContainer;
 import frc.robot.commands.SetUpperChassisPose;
 import frc.robot.commands.SwerveDriveCommand;
@@ -77,7 +78,7 @@ public class RobotContainer
         operatorController.leftTrigger().whileTrue(shooter.shoot(.5));
         operatorController.pov(0).onTrue(new SetUpperChassisPose(elevator, pivot, UpperChassisPose.L3_REMOVE));
         operatorController.pov(180).onTrue(new SetUpperChassisPose(elevator, pivot, UpperChassisPose.L2_REMOVE));
-        operatorController.pov(90).onTrue(new SetUpperChassisPose(elevator, pivot, UpperChassisPose.PROCESSOR_SCORE));
+        operatorController.pov(90).onTrue(new AlgaeScore(elevator, pivot, UpperChassisPose.PROCESSOR_SCORE));
     }
         
     
