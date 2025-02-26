@@ -11,6 +11,7 @@ import frc.robot.subsystems.Pivot;
 public class AlgaeScore extends SequentialCommandGroup{
     public AlgaeScore(Elevator elevator, Pivot pivot, UpperChassisPose pose){
         addCommands(
+            pivot.goToPosition(UpperChassisPose.PROCESSOR_SCORE),
             elevator.elevateToPosition(pose),
             new WaitCommand(2),
             pivot.goToPosition(pose)
