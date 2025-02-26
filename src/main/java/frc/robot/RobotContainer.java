@@ -57,7 +57,7 @@ public class RobotContainer
         () -> driverController.getRightX(),
         // 10 is placeholder for maxHeight before speed reduction
         // .5 is placeholder for slow speed, 1 is placeholder for fast speed
-        () -> (elevator.getPosition() > 10 || driverController.rightBumper().getAsBoolean()) ? .5 : 1));
+        () -> (elevator.getHeight() > 10 || driverController.rightBumper().getAsBoolean()) ? .5 : 1));
         
         // HOLD RT -> Drive in robot centric mode
         driverController.leftTrigger()

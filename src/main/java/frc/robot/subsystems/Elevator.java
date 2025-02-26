@@ -16,16 +16,14 @@ import edu.wpi.first.math.controller.ProfiledPIDController;
 import edu.wpi.first.math.trajectory.TrapezoidProfile.Constraints;
 import edu.wpi.first.wpilibj.RobotController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import edu.wpi.first.wpilibj2.command.WaitCommand;
 
 public class Elevator extends SubsystemBase {
     // Declare variables
     public SparkMax leadMotor;
     public SparkMax followerMotor; 
     public ProfiledPIDController elevatorPID;
-    public UpperChassisPose lastPosition = UpperChassisPose.ZERO;
+    public UpperChassisPose target = UpperChassisPose.ZERO;
     
 
     // Constructor 
@@ -48,34 +46,31 @@ public class Elevator extends SubsystemBase {
         followerMotor.configure(followConfig, ResetMode.kResetSafeParameters , PersistMode.kPersistParameters);
     }
 
-    
-    /** @return A command that tells the elevator to go to a position */
-    public Command elevateToPosition(UpperChassisPose pos) {
-        return new WaitCommand(.1)
-            .alongWith(this.runOnce(() -> elevatorPID.setGoal(pos.getElevatorHeight())))
-            .andThen(
-                run(() -> {})
-                .until(() -> atSetpoint())
-                );
-    }
 
     // Getters
-    public double getPosition() { return leadMotor.getEncoder().getPosition(); }
+    public UpperChassisPose getTargetPosition() { return target; }
+    public double getHeight() { return leadMotor.getEncoder().getPosition(); }
+    public double getSetpoint() { return elevatorPID.getGoal().position; }
     public boolean atSetpoint() { return elevatorPID.atSetpoint(); }
-    public UpperChassisPose getLatestPosition() { return lastPosition; }
 
-    /** Sends voltage to the elevator to drive it to a position */
-    private void driveElevatorToPosition() {
-        double pidout = elevatorPID.calculate(leadMotor.getEncoder().getPosition());
+    /** Sets the position the elevator will drive to */
+    public void setPosition(UpperChassisPose position) { 
+        target = position;
+        elevatorPID.setGoal(position.getElevatorHeight()); 
+    }
+
+    /** Sends voltage to the elevator to drive it to the current target position */
+    private void driveElevator() {
+        double pidout = elevatorPID.calculate(getHeight());
         leadMotor.setVoltage(pidout * RobotController.getBatteryVoltage());
     }
 
     @Override
     public void periodic() {
-        driveElevatorToPosition();
+        driveElevator();
 
-        SmartDashboard.putNumber("Elevator Height", getPosition());
+        SmartDashboard.putNumber("Elevator Height", getHeight());
         SmartDashboard.putBoolean("Elevator at Setpoint", atSetpoint());
-        SmartDashboard.putString("Elevator Position", lastPosition.toString());
+        SmartDashboard.putString("Elevator Position", target.toString());
     }
 }
