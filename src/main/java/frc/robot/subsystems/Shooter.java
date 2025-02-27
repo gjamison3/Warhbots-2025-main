@@ -19,6 +19,7 @@ public class Shooter extends SubsystemBase {
     public Shooter() {
         motor = new SparkMax(INTAKE_MOTOR, MotorType.kBrushless);
         SparkMaxConfig motorConfig = new SparkMaxConfig();
+        motorConfig.smartCurrentLimit(40);
         motor.configure(motorConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
 
         sensor = new CANrange(INTAKE_SENSOR);

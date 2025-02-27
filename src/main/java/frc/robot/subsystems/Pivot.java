@@ -29,6 +29,7 @@ public class Pivot extends SubsystemBase {
 
         SparkMaxConfig config = new SparkMaxConfig();
         config.encoder.positionConversionFactor(PIVOT_RATIO);
+        config.smartCurrentLimit(40);
         motor.configure(config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
     }
 
