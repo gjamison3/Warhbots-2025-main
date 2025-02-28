@@ -64,7 +64,7 @@ public final class Constants {
         public static final double ELEVATOR_D = 0.005;
 
         public static final double PIVOT_RATIO = 1;
-        public static final double PIVOT_P = 0.1;
+        public static final double PIVOT_P = 0.05;
         public static final double PIVOT_MIN = 0;
         public static final double PIVOT_MAX = 25;
 
@@ -72,11 +72,11 @@ public final class Constants {
             /** It is assumed that the elevator is safe to move when the pivot is at 0 */
             ZERO(0, 0.0),
             L1_SCORE(0, 3.3),
-            L2_SCORE(5.07, 3.3),
-            L3_SCORE(14.07, 3.3),
+            L2_SCORE(5.92, 3.3),
+            L3_SCORE(14.92, 3.3),
             L4_SCORE(32.0, 8.5),
-            L2_REMOVE(10.80, 23.93),
-            L3_REMOVE(21.21, 23.93),
+            L2_REMOVE(12.10, 21.93),
+            L3_REMOVE(20.23, 21.93),
             PROCESSOR_SCORE(0.07, 21.78);
 
             private final double elevatorHeight;
@@ -152,7 +152,7 @@ public final class Constants {
             public static final double TURN_RATIO = 1 / ((14.0 / 50.0) * (10.0 / 60.0));
             
             /** The diameter of the wheels measured in meters */
-            public static final double WHEEL_DIAMETER = Units.inchesToMeters(4);
+            public static final double WHEEL_DIAMETER = Units.inchesToMeters(3.96);
 
             /** Drive motor revolutions * DRIVE_REVS_TO_M = distance in meters */
             public static final double DRIVE_REVS_TO_M = ((WHEEL_DIAMETER * Math.PI) / DRIVE_RATIO_FAST);

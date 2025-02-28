@@ -51,6 +51,7 @@ public class AutonContainer {
         SendableChooser<Command> chooser = new SendableChooser<Command>();
         chooser.setDefaultOption("Do Nothing", doNothing());
         chooser.addOption("Test Circle", AutoBuilder.buildAuto("Example Circle"));
+        chooser.addOption("Test Straight", AutoBuilder.buildAuto("Straight"));
         return chooser;
     }
 

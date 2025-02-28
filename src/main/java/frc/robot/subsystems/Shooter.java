@@ -32,8 +32,19 @@ public class Shooter extends SubsystemBase {
             .until(() -> sensor.getDistance().getValueAsDouble() < 0/* distance */);
     }
 
-    public Command shoot(double speed) { // Need to calibrate detection distance
+    public Command shoot(double speed) {
         return runEnd(() -> motor.set(-speed),
             () -> motor.set(0));
     }
+
+    public Command removealgae(double speed) {
+        return runEnd(() -> motor.set(speed),
+            () -> motor.set(0));
+    }
+
+    public Command intakereverse(double speed) {
+        return runEnd(() -> motor.set(speed),
+            () -> motor.set(0));
+    }
+
 }
