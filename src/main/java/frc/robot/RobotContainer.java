@@ -60,7 +60,7 @@ public class RobotContainer
         // HOLD RB -> Drive slow
         // 10 is placeholder for maxHeight before speed reduction
         // .5 is placeholder for slow speed, 1 is placeholder for fast speed
-        () -> (elevator.getPosition() > 10 || driverController.rightBumper().getAsBoolean()) ? .5 : 1));
+        () -> (elevator.getPosition() > 15 || driverController.rightBumper().getAsBoolean()) ? .60 : 1));
 
         // PRESS RT -> Scores coral/algae
         driverController.rightTrigger().whileTrue(shooter.shoot(.5));
