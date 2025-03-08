@@ -63,7 +63,7 @@ public class RobotContainer
         () -> (elevator.getPosition() > 15 || driverController.rightBumper().getAsBoolean()) ? .60 : 1));
 
         // PRESS RT -> Scores coral/algae
-        driverController.rightTrigger().whileTrue(shooter.shoot(.5));
+        driverController.rightTrigger().whileTrue(shooter.shoot(1));
 
         // HOLD LT -> Drive in robot centric mode
         driverController.leftTrigger()
@@ -83,10 +83,10 @@ public class RobotContainer
         operatorController.rightTrigger().whileTrue(shooter.intake(.3));
         operatorController.leftTrigger().whileTrue(shooter.removealgae(.5));
         operatorController.leftBumper().whileTrue(shooter.intakereverse(.2));
-        //operatorController.leftTrigger().whileTrue(shooter.shoot(.5));
         operatorController.pov(0).onTrue(new SetUpperChassisPose(elevator, pivot, UpperChassisPose.L3_REMOVE));
         operatorController.pov(180).onTrue(new SetUpperChassisPose(elevator, pivot, UpperChassisPose.L2_REMOVE));
         operatorController.pov(90).onTrue(new AlgaeScore(elevator, pivot, UpperChassisPose.PROCESSOR_SCORE));
+        //operatorController.pov(270).onTrue(new SetUpperChassisPose(elevator, pivot, UpperChassisPose.ALGAE_BARGE));
     }
         
     

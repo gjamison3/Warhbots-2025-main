@@ -8,7 +8,7 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 6.85,
+        "x": 6.314891517967038,
         "y": 4.05
       },
       "isLocked": false,
@@ -20,7 +20,7 @@
         "y": 4.05
       },
       "prevControl": {
-        "x": 5.740025252525253,
+        "x": 6.240025252525253,
         "y": 4.05
       },
       "nextControl": null,
@@ -31,7 +31,14 @@
   "rotationTargets": [],
   "constraintZones": [],
   "pointTowardsZones": [],
-  "eventMarkers": [],
+  "eventMarkers": [
+    {
+      "name": "algaeIntake",
+      "waypointRelativePos": 0.0,
+      "endWaypointRelativePos": 1.0,
+      "command": null
+    }
+  ],
   "globalConstraints": {
     "maxVelocity": 4.0,
     "maxAcceleration": 4.0,

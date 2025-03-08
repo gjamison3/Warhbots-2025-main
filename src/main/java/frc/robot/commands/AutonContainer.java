@@ -10,17 +10,14 @@ import com.pathplanner.lib.controllers.PPHolonomicDriveController;
 
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.Constants.UpperChassisConstants.UpperChassisPose;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.drivetrain.SwerveDrivetrain;
-import frc.robot.commands.SetUpperChassisPose;
-import frc.robot.commands.AlgaeScore;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Pivot;
 import frc.robot.subsystems.Shooter;
-
-
 
 /** A container that stores various procedures for the autonomous portion of the game */
 public class AutonContainer {
@@ -63,23 +60,28 @@ public class AutonContainer {
         NamedCommands.registerCommand("elevatorL2", new SetUpperChassisPose(elevator, pivot, UpperChassisPose.L2_SCORE));
         NamedCommands.registerCommand("elevatorL3", new SetUpperChassisPose(elevator, pivot, UpperChassisPose.L3_SCORE));
         NamedCommands.registerCommand("elevatorL4", new SetUpperChassisPose(elevator, pivot, UpperChassisPose.L4_SCORE));
+        //NamedCommands.registerCommand("elevatorAlgaeBarge", new SetUpperChassisPose(elevator, pivot, ALGAE_BARGE));
         NamedCommands.registerCommand("elevatorAlgaeL2", new SetUpperChassisPose(elevator, pivot, UpperChassisPose.L2_REMOVE));
         NamedCommands.registerCommand("elevatorAlgaeL3", new SetUpperChassisPose(elevator, pivot, UpperChassisPose.L3_REMOVE));
+        NamedCommands.registerCommand("algaeProcessor", new AlgaeScore(elevator, pivot, UpperChassisPose.PROCESSOR_SCORE));
         NamedCommands.registerCommand("shoot", shooter.shoot(.5).withTimeout(.5));
         NamedCommands.registerCommand("algaeIntake", shooter.shoot(-.5).withTimeout(.5));
+        NamedCommands.registerCommand("resetHeading", (new InstantCommand(() -> drivetrain.resetHeading())));
     }
 
     public SendableChooser<Command> buildAutonChooser() {
         SendableChooser<Command> chooser = new SendableChooser<Command>();
         chooser.setDefaultOption("Do Nothing", doNothing());
-        chooser.addOption("Test Circle", AutoBuilder.buildAuto("Example Circle"));
+        //chooser.addOption("Test Circle", AutoBuilder.buildAuto("Example Circle"));
         chooser.addOption("Test Straight", AutoBuilder.buildAuto("Straight"));
-        chooser.addOption("Move back and scoreL2", AutoBuilder.buildAuto("Move back and scoreL2"));
-        chooser.addOption("Move back and scoreL3", AutoBuilder.buildAuto("Move back and scoreL3"));
-        chooser.addOption("Move back and scoreL4", AutoBuilder.buildAuto("Move back and scoreL4"));
-        chooser.addOption("Move back and scoreL2 then intake", AutoBuilder.buildAuto("Move back and scoreL2 then intake"));
-        chooser.addOption("Move back and scoreL3 then intake", AutoBuilder.buildAuto("Move back and scoreL3 then intake"));
-        chooser.addOption("Move back and scoreL4 then intake", AutoBuilder.buildAuto("Move back and scoreL4 then intake"));
+        //chooser.addOption("Move back and scoreL2", AutoBuilder.buildAuto("Move back and scoreL2"));
+        //chooser.addOption("Move back and scoreL3", AutoBuilder.buildAuto("Move back and scoreL3"));
+        chooser.addOption("L4", AutoBuilder.buildAuto("Move back and scoreL4"));
+        chooser.addOption("L4 then resetHeader", AutoBuilder.buildAuto(" Move back and scoreL4 then resetHeader"));
+        //chooser.addOption("Move back and scoreL2 then intake", AutoBuilder.buildAuto("Move back and scoreL2 then intake"));
+        //chooser.addOption("Move back and scoreL3 then intake", AutoBuilder.buildAuto("Move back and scoreL3 then intake"));
+        //chooser.addOption("Move back and scoreL4 then intake", AutoBuilder.buildAuto("Move back and scoreL4 then intake"));
+        chooser.addOption("L4-AlgaeTEST", AutoBuilder.buildAuto("L4-AlgaeTEST"));
         return chooser;
     }
 

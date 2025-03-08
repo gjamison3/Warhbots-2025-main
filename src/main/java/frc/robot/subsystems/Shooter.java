@@ -7,6 +7,8 @@ import com.revrobotics.spark.SparkLowLevel.MotorType;
 import com.revrobotics.spark.config.SparkMaxConfig;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
+
 import com.ctre.phoenix6.hardware.CANrange;
 import com.revrobotics.spark.SparkMax;
 import com.revrobotics.spark.SparkBase.PersistMode;
@@ -29,7 +31,10 @@ public class Shooter extends SubsystemBase {
     public Command intake(double speed) { // Need to calibrate detection distance
         return runEnd(() -> motor.set(-speed),
             () -> motor.set(0))
-            .until(() -> sensor.getDistance().getValueAsDouble() < 0/* distance */);
+            .until(() -> sensor.getDistance().getValueAsDouble() > 0.40);
+            //.until(() -> sensor.getDistance().getValueAsDouble() > 0.40).andThen(new WaitCommand(0.50));
+            //the value after the > sign is distance in meters. The commented code is an attempt
+            //at making the motor stop when detecting the distance and waiting 0.5 seconds
     }
 
     public Command shoot(double speed) {

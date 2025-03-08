@@ -77,7 +77,8 @@ public final class Constants {
             L4_SCORE(32.0, 8.5),
             L2_REMOVE(12.10, 21.93),
             L3_REMOVE(20.23, 21.93),
-            PROCESSOR_SCORE(0.07, 21.78);
+            PROCESSOR_SCORE(0.16, 21.4);
+            //ALGAE_BARGE(30.3, 9.5);
 
             private final double elevatorHeight;
             private final double pivotAngle;
