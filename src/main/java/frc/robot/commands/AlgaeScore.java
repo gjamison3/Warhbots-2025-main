@@ -13,7 +13,7 @@ public class AlgaeScore extends SequentialCommandGroup{
         addCommands(
             pivot.goToPosition(UpperChassisPose.PROCESSOR_SCORE),
             elevator.elevateToPosition(pose),
-            new WaitCommand(2),
+            new WaitCommand(.25),
             pivot.goToPosition(pose)
 
         );

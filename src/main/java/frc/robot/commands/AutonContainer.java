@@ -49,8 +49,8 @@ public class AutonContainer {
             drivetrain::getChassisSpeeds,
             drivetrain::driveRobotRelative,
             new PPHolonomicDriveController( // HolonomicPathFollowerConfig, this should likely live in your Constants class
-                    new PIDConstants(5.0, 0.0, 0.0), // Translation PID constants
-                    new PIDConstants(5.0, 0.0, 0.0) // Rotation PID constants
+                    new PIDConstants(.5, 0.0, 0.0), // Translation PID constants
+                    new PIDConstants(.5, 0.0, 0.0) // Rotation PID constants
             ),
             config,
             () -> robot.onRedAlliance(),

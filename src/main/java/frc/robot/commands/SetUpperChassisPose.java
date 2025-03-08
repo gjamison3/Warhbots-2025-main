@@ -13,7 +13,7 @@ public class SetUpperChassisPose extends SequentialCommandGroup{
         addCommands(
             pivot.goToPosition(UpperChassisPose.L1_SCORE),
             elevator.elevateToPosition(pose),
-            new WaitCommand(2),
+            new WaitCommand(1.5),
             pivot.goToPosition(pose)
 
         );
