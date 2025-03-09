@@ -59,12 +59,12 @@ public final class Constants {
     public static final class UpperChassisConstants {
         public static final double ELEVATOR_RATIO = 1;
         public static final double ELEVATOR_VEL_LIMIT = 100;
-        public static final double ELEVATOR_ACCEL_LIMIT = 45;
+        public static final double ELEVATOR_ACCEL_LIMIT = 40;
         public static final double ELEVATOR_P = 0.15;
         public static final double ELEVATOR_D = 0.005;
 
         public static final double PIVOT_RATIO = 1;
-        public static final double PIVOT_P = 0.05;
+        public static final double PIVOT_P = 0.09;
         public static final double PIVOT_MIN = 0;
         public static final double PIVOT_MAX = 25;
 
@@ -77,7 +77,8 @@ public final class Constants {
             L4_SCORE(32.0, 8.5),
             L2_REMOVE(12.10, 21.93),
             L3_REMOVE(20.23, 21.93),
-            BARGE_SCORE(33.5,6.5),
+            BARGE_SETUP(33.5,21.93),
+            BARGE_SCORE(33.5,7.0),
             PROCESSOR_SCORE(1.5, 21.93);
 
             private final double elevatorHeight;
@@ -184,7 +185,7 @@ public final class Constants {
             /** Higher values make the robot drive more aggressively */
             public static final double TRANSLATION_SLEW = 4;
             /** Higher values make the robot spin more aggressively */
-            public static final double ROTATION_SLEW = 4;
+            public static final double ROTATION_SLEW = 6;
     
             /** Translation instructions closer to 0 than the deadband will be set to 0 */
             public static final double TRANSLATION_DEADBAND = .05;

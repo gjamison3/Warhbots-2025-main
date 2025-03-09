@@ -42,6 +42,11 @@ public class Shooter extends SubsystemBase {
             () -> motor.set(0));
     }
 
+    public Command bargealgaescore(double speed) {
+        return runEnd(() -> motor.set(-speed),
+            () -> motor.set(0));
+    }
+
     public Command intakereverse(double speed) {
         return runEnd(() -> motor.set(speed),
             () -> motor.set(0));

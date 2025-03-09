@@ -14,8 +14,6 @@ import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.Constants.UpperChassisConstants.UpperChassisPose;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.drivetrain.SwerveDrivetrain;
-import frc.robot.commands.SetUpperChassisPose;
-import frc.robot.commands.AlgaeScore;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Pivot;
 import frc.robot.subsystems.Shooter;

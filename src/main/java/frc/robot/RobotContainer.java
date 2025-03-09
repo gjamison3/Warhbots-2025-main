@@ -12,9 +12,12 @@ import frc.robot.subsystems.Shooter;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import frc.robot.Constants.UpperChassisConstants.UpperChassisPose;
 import frc.robot.commands.AlgaeScore;
 import frc.robot.commands.AutonContainer;
+import frc.robot.commands.BargeFling;
+import frc.robot.commands.BargeScore;
 import frc.robot.commands.SetUpperChassisPose;
 import frc.robot.commands.SwerveDriveCommand;
 import edu.wpi.first.wpilibj.DriverStation;
@@ -60,10 +63,12 @@ public class RobotContainer
         // HOLD RB -> Drive slow
         // 10 is placeholder for maxHeight before speed reduction
         // .5 is placeholder for slow speed, 1 is placeholder for fast speed
-        () -> (elevator.getPosition() > 15 || driverController.rightBumper().getAsBoolean()) ? .60 : 1));
+        () -> (elevator.getPosition() > 23 || driverController.rightBumper().getAsBoolean()) ? .60 : 1));
 
         // PRESS RT -> Scores coral/algae
         driverController.rightTrigger().whileTrue(shooter.shoot(.5));
+
+        driverController.b().whileTrue(shooter.bargealgaescore(1));
 
         // HOLD LT -> Drive in robot centric mode
         driverController.leftTrigger()
@@ -83,10 +88,11 @@ public class RobotContainer
         operatorController.rightTrigger().whileTrue(shooter.intake(.3));
         operatorController.leftTrigger().whileTrue(shooter.removealgae(.5));
         operatorController.leftBumper().whileTrue(shooter.intakereverse(.2));
+        operatorController.rightBumper().onTrue(new BargeFling(shooter, pivot));
         operatorController.pov(0).onTrue(new SetUpperChassisPose(elevator, pivot, UpperChassisPose.L3_REMOVE));
         operatorController.pov(180).onTrue(new SetUpperChassisPose(elevator, pivot, UpperChassisPose.L2_REMOVE));
         operatorController.pov(90).onTrue(new AlgaeScore(elevator, pivot, UpperChassisPose.PROCESSOR_SCORE));
-        operatorController.pov(270).onTrue(new AlgaeScore(elevator, pivot, UpperChassisPose.BARGE_SCORE));
+        operatorController.pov(270).onTrue(new BargeScore(elevator, pivot, shooter, UpperChassisPose.BARGE_SETUP));
     }
         
     
