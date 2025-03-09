@@ -38,14 +38,14 @@ public class Elevator extends SubsystemBase {
         
         // Configure the elevator motors   
         SparkMaxConfig leaderConfig = new SparkMaxConfig();
-        leaderConfig.idleMode(IdleMode.kCoast);
+        leaderConfig.idleMode(IdleMode.kBrake);
         leaderConfig.encoder.positionConversionFactor(ELEVATOR_RATIO);
         leaderConfig.smartCurrentLimit(40);
         leadMotor.configure(leaderConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
         
         SparkMaxConfig followConfig = new SparkMaxConfig();
         followConfig.follow(leadMotor, false);
-        followConfig.idleMode(IdleMode.kCoast);
+        followConfig.idleMode(IdleMode.kBrake);
         followConfig.smartCurrentLimit(40);
         followerMotor.configure(followConfig, ResetMode.kResetSafeParameters , PersistMode.kPersistParameters);
     }
