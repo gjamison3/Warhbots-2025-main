@@ -77,7 +77,8 @@ public final class Constants {
             L4_SCORE(32.0, 8.5),
             L2_REMOVE(12.10, 21.93),
             L3_REMOVE(20.23, 21.93),
-            BARGE_SCORE(33.5,6.5),
+            BARGE_SETUP(33.5,21.93),
+            BARGE_SCORE(33.5,3.3),
             PROCESSOR_SCORE(1.5, 21.93);
 
             private final double elevatorHeight;

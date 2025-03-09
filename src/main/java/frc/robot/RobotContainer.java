@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.robot.Constants.UpperChassisConstants.UpperChassisPose;
 import frc.robot.commands.AlgaeScore;
 import frc.robot.commands.AutonContainer;
+import frc.robot.commands.BargeScore;
 import frc.robot.commands.SetUpperChassisPose;
 import frc.robot.commands.SwerveDriveCommand;
 import edu.wpi.first.wpilibj.DriverStation;
@@ -86,7 +87,7 @@ public class RobotContainer
         operatorController.pov(0).onTrue(new SetUpperChassisPose(elevator, pivot, UpperChassisPose.L3_REMOVE));
         operatorController.pov(180).onTrue(new SetUpperChassisPose(elevator, pivot, UpperChassisPose.L2_REMOVE));
         operatorController.pov(90).onTrue(new AlgaeScore(elevator, pivot, UpperChassisPose.PROCESSOR_SCORE));
-        operatorController.pov(270).onTrue(new AlgaeScore(elevator, pivot, UpperChassisPose.BARGE_SCORE));
+        operatorController.pov(270).onTrue(new BargeScore(elevator, pivot, shooter, UpperChassisPose.BARGE_SCORE));
     }
         
     
