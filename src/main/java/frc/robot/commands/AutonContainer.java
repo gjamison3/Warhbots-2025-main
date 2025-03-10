@@ -10,7 +10,6 @@ import com.pathplanner.lib.controllers.PPHolonomicDriveController;
 
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.Constants.UpperChassisConstants.UpperChassisPose;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.drivetrain.SwerveDrivetrain;
@@ -56,7 +55,7 @@ public class AutonContainer {
     }
 
     private void registerNamedCommands() {
-        NamedCommands.registerCommand("Do Nothing", doNothing() );
+        NamedCommands.registerCommand("doNothing", new DoNothing(15, drivetrain) );
         NamedCommands.registerCommand("elevatorZero", new SetUpperChassisPose(elevator, pivot, UpperChassisPose.ZERO));
         NamedCommands.registerCommand("elevatorL2", new SetUpperChassisPose(elevator, pivot, UpperChassisPose.L2_SCORE));
         NamedCommands.registerCommand("elevatorL3", new SetUpperChassisPose(elevator, pivot, UpperChassisPose.L3_SCORE));
@@ -69,8 +68,8 @@ public class AutonContainer {
 
     public SendableChooser<Command> buildAutonChooser() {
         SendableChooser<Command> chooser = new SendableChooser<Command>();
-        chooser.setDefaultOption("Do Nothing", doNothing());
-        chooser.addOption("Test Circle", AutoBuilder.buildAuto("Example Circle"));
+        chooser.setDefaultOption("Do Nothing", new DoNothing(0, drivetrain));
+        chooser.addOption("Test Spin", AutoBuilder.buildAuto("Example Spin"));
         chooser.addOption("Test Straight", AutoBuilder.buildAuto("Straight"));
         chooser.addOption("Move back and scoreL2", AutoBuilder.buildAuto("Move back and scoreL2"));
         chooser.addOption("Move back and scoreL3", AutoBuilder.buildAuto("Move back and scoreL3"));
@@ -79,10 +78,5 @@ public class AutonContainer {
         chooser.addOption("Move back and scoreL3 then intake", AutoBuilder.buildAuto("Move back and scoreL3 then intake"));
         chooser.addOption("Move back and scoreL4 then intake", AutoBuilder.buildAuto("Move back and scoreL4 then intake"));
         return chooser;
-    }
-
-    /** Auton that does nothing */
-    public Command doNothing() {
-        return new WaitCommand(0);
     }
 }
