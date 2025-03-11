@@ -15,39 +15,59 @@
           "data": {
             "commands": [
               {
-                "type": "wait",
+                "type": "race",
                 "data": {
-                  "waitTime": 0.5
-                }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "elevatorL4"
-                }
-              },
-              {
-                "type": "wait",
-                "data": {
-                  "waitTime": 1.0
-                }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "shoot"
-                }
-              },
-              {
-                "type": "wait",
-                "data": {
-                  "waitTime": 0.5
-                }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "elevatorZero"
+                  "commands": [
+                    {
+                      "type": "sequential",
+                      "data": {
+                        "commands": [
+                          {
+                            "type": "wait",
+                            "data": {
+                              "waitTime": 0.5
+                            }
+                          },
+                          {
+                            "type": "named",
+                            "data": {
+                              "name": "elevatorL4"
+                            }
+                          },
+                          {
+                            "type": "wait",
+                            "data": {
+                              "waitTime": 0.5
+                            }
+                          },
+                          {
+                            "type": "named",
+                            "data": {
+                              "name": "shoot"
+                            }
+                          },
+                          {
+                            "type": "wait",
+                            "data": {
+                              "waitTime": 1.0
+                            }
+                          },
+                          {
+                            "type": "named",
+                            "data": {
+                              "name": "elevatorZero"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "doNothing"
+                      }
+                    }
+                  ]
                 }
               }
             ]

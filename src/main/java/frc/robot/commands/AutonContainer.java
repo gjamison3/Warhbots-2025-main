@@ -10,13 +10,14 @@ import com.pathplanner.lib.controllers.PPHolonomicDriveController;
 
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.Constants.UpperChassisConstants.UpperChassisPose;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.drivetrain.SwerveDrivetrain;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Pivot;
 import frc.robot.subsystems.Shooter;
+import frc.robot.commands.BargeFling;
+import frc.robot.commands.BargeScore;
 
 
 
@@ -47,8 +48,8 @@ public class AutonContainer {
             drivetrain::getChassisSpeeds,
             drivetrain::driveRobotRelative,
             new PPHolonomicDriveController( // HolonomicPathFollowerConfig, this should likely live in your Constants class
-                    new PIDConstants(.5, 0.0, 0.0), // Translation PID constants
-                    new PIDConstants(.5, 0.0, 0.0) // Rotation PID constants
+                    new PIDConstants(5.0, 0.0, 0.0), // Translation PID constants
+                    new PIDConstants(5.0, 0.0, 0.0) // Rotation PID constants
             ),
             config,
             () -> robot.onRedAlliance(),
@@ -56,33 +57,29 @@ public class AutonContainer {
     }
 
     private void registerNamedCommands() {
-        NamedCommands.registerCommand("Do Nothing", doNothing() );
+        NamedCommands.registerCommand("doNothing", new DoNothing(15.0, drivetrain) );
         NamedCommands.registerCommand("elevatorZero", new SetUpperChassisPose(elevator, pivot, UpperChassisPose.ZERO));
         NamedCommands.registerCommand("elevatorL2", new SetUpperChassisPose(elevator, pivot, UpperChassisPose.L2_SCORE));
         NamedCommands.registerCommand("elevatorL3", new SetUpperChassisPose(elevator, pivot, UpperChassisPose.L3_SCORE));
         NamedCommands.registerCommand("elevatorL4", new SetUpperChassisPose(elevator, pivot, UpperChassisPose.L4_SCORE));
         NamedCommands.registerCommand("elevatorAlgaeL2", new SetUpperChassisPose(elevator, pivot, UpperChassisPose.L2_REMOVE));
         NamedCommands.registerCommand("elevatorAlgaeL3", new SetUpperChassisPose(elevator, pivot, UpperChassisPose.L3_REMOVE));
+        NamedCommands.registerCommand("elevatorBarge", new SetUpperChassisPose(elevator, pivot, UpperChassisPose.BARGE_SETUP));
+        NamedCommands.registerCommand("bargeFling", new BargeFling(shooter, pivot));
         NamedCommands.registerCommand("shoot", shooter.shoot(.5).withTimeout(.5));
         NamedCommands.registerCommand("algaeIntake", shooter.shoot(-.5).withTimeout(.5));
     }
 
     public SendableChooser<Command> buildAutonChooser() {
         SendableChooser<Command> chooser = new SendableChooser<Command>();
-        chooser.setDefaultOption("Do Nothing", doNothing());
-        chooser.addOption("Test Circle", AutoBuilder.buildAuto("Example Circle"));
+        chooser.setDefaultOption("Do Nothing", new DoNothing(0, drivetrain));
+        //chooser.addOption("Test Spin", AutoBuilder.buildAuto("Example Spin"));
         chooser.addOption("Test Straight", AutoBuilder.buildAuto("Straight"));
-        chooser.addOption("Move back and scoreL2", AutoBuilder.buildAuto("Move back and scoreL2"));
-        chooser.addOption("Move back and scoreL3", AutoBuilder.buildAuto("Move back and scoreL3"));
         chooser.addOption("Move back and scoreL4", AutoBuilder.buildAuto("Move back and scoreL4"));
-        chooser.addOption("Move back and scoreL2 then intake", AutoBuilder.buildAuto("Move back and scoreL2 then intake"));
-        chooser.addOption("Move back and scoreL3 then intake", AutoBuilder.buildAuto("Move back and scoreL3 then intake"));
-        chooser.addOption("Move back and scoreL4 then intake", AutoBuilder.buildAuto("Move back and scoreL4 then intake"));
+        //chooser.addOption("Move back and scoreL4 then intake", AutoBuilder.buildAuto("Move back and scoreL4 then intake"));
+        chooser.addOption("new new test 2", AutoBuilder.buildAuto("new new test 2"));
+        chooser.addOption("new new test 3", AutoBuilder.buildAuto("new new test 3"));
+        chooser.addOption("new new test 4", AutoBuilder.buildAuto("new new test 4"));
         return chooser;
-    }
-
-    /** Auton that does nothing */
-    public Command doNothing() {
-        return new WaitCommand(0);
     }
 }

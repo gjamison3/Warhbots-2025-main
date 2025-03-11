@@ -7,37 +7,32 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Middle Coral"
+            "pathName": "Example Spin"
           }
         },
         {
-          "type": "wait",
+          "type": "race",
           "data": {
-            "waitTime": 2.0
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "elevatorL2"
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 2.0
+            "commands": [
+              {
+                "type": "named",
+                "data": {
+                  "name": "doNothing"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "elevatorL2"
+                }
+              }
+            ]
           }
         },
         {
           "type": "named",
           "data": {
             "name": "shoot"
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 2.0
           }
         },
         {
