@@ -15,7 +15,7 @@ public class BargeFling extends ParallelCommandGroup{
     public BargeFling(Shooter shooter, Pivot pivot){
         addCommands(
             pivot.goToPosition(UpperChassisPose.BARGE_SCORE),
-            new SequentialCommandGroup(new WaitCommand(0.125), shooter.bargealgaescore(1).withTimeout(0.5))
+            new SequentialCommandGroup(new WaitCommand(0.125), shooter.bargealgaescore(0.5).withTimeout(0.5))
         );
     }
 }
