@@ -6,7 +6,6 @@ import static frc.robot.Constants.SubsystemIDs.INTAKE_SENSOR;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 import com.revrobotics.spark.config.SparkMaxConfig;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.ctre.phoenix6.hardware.CANrange;
 import com.revrobotics.spark.SparkMax;
@@ -55,4 +54,11 @@ public class Shooter extends SubsystemBase {
             () -> motor.set(0));
     }
 
+
+    public void spin(double speed) {
+        motor.set(speed);
+    }
+    public boolean isSensorBlocked() {
+        return sensor.getDistanceStdDev().getValueAsDouble() > 0.02;
+    }
 }
