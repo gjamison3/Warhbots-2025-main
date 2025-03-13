@@ -83,7 +83,8 @@ public class AutonContainer {
         //chooser.addOption("new new test 4", AutoBuilder.buildAuto("new new test 4"));
         //chooser.addOption("TestingWedL4MOVEBACK", AutoBuilder.buildAuto("TestingWed"));
         chooser.addOption("L4MidProcessor", AutoBuilder.buildAuto("Copy of TestingWed"));
-        chooser.addOption("L4MidBarge", AutoBuilder.buildAuto("Copy of TestingWed(BARGE)"));
+        //chooser.addOption("L4MidBargeRight", AutoBuilder.buildAuto("Copy of TestingWed(BARGE)"));
+        chooser.addOption("L4MidBargeLeft", AutoBuilder.buildAuto("algaeToBargeCorrectSide"));
         return chooser;
     }
 }
