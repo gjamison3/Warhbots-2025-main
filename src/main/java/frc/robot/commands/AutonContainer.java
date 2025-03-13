@@ -64,7 +64,8 @@ public class AutonContainer {
         NamedCommands.registerCommand("elevatorL4", new SetUpperChassisPose(elevator, pivot, UpperChassisPose.L4_SCORE));
         NamedCommands.registerCommand("elevatorAlgaeL2", new SetUpperChassisPose(elevator, pivot, UpperChassisPose.L2_REMOVE));
         NamedCommands.registerCommand("elevatorAlgaeL3", new SetUpperChassisPose(elevator, pivot, UpperChassisPose.L3_REMOVE));
-        NamedCommands.registerCommand("elevatorBarge", new SetUpperChassisPose(elevator, pivot, UpperChassisPose.BARGE_SETUP));
+        NamedCommands.registerCommand("algaeScore", new AlgaeScore(elevator, pivot, UpperChassisPose.PROCESSOR_SCORE));
+        NamedCommands.registerCommand("elevatorBarge", new BargeScore(elevator, pivot, shooter, UpperChassisPose.BARGE_SETUP));
         NamedCommands.registerCommand("bargeFling", new BargeFling(shooter, pivot));
         NamedCommands.registerCommand("shoot", shooter.shoot(.5).withTimeout(.5));
         NamedCommands.registerCommand("algaeIntake", shooter.shoot(-.5).withTimeout(.5));
@@ -77,9 +78,12 @@ public class AutonContainer {
         chooser.addOption("Test Straight", AutoBuilder.buildAuto("Straight"));
         chooser.addOption("Move back and scoreL4", AutoBuilder.buildAuto("Move back and scoreL4"));
         //chooser.addOption("Move back and scoreL4 then intake", AutoBuilder.buildAuto("Move back and scoreL4 then intake"));
-        chooser.addOption("new new test 2", AutoBuilder.buildAuto("new new test 2"));
-        chooser.addOption("new new test 3", AutoBuilder.buildAuto("new new test 3"));
-        chooser.addOption("new new test 4", AutoBuilder.buildAuto("new new test 4"));
+        //chooser.addOption("new new test 2", AutoBuilder.buildAuto("new new test 2"));
+        //chooser.addOption("new new test 3", AutoBuilder.buildAuto("new new test 3"));
+        //chooser.addOption("new new test 4", AutoBuilder.buildAuto("new new test 4"));
+        //chooser.addOption("TestingWedL4MOVEBACK", AutoBuilder.buildAuto("TestingWed"));
+        chooser.addOption("L4MidProcessor", AutoBuilder.buildAuto("Copy of TestingWed"));
+        chooser.addOption("L4MidBarge", AutoBuilder.buildAuto("Copy of TestingWed(BARGE)"));
         return chooser;
     }
 }

@@ -14,9 +14,9 @@ public class BargeScore extends SequentialCommandGroup{
         addCommands(
             pivot.goToPosition(UpperChassisPose.BARGE_SETUP),
             elevator.elevateToPosition(pose),
-            new WaitCommand(2.0),
-            pivot.goToPosition(pose),
-            new WaitCommand(2)
+            new WaitCommand(2),
+            pivot.goToPosition(pose)
+            //new WaitCommand(2)
             //shooter.bargealgaescore(1.0),
             //new WaitCommand(2),
             //shooter.bargealgaescore(0)
