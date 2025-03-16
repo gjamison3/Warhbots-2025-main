@@ -74,7 +74,7 @@ public final class Constants {
             L1_SCORE(0, 3.3),
             L2_SCORE(5.92, 3.3),
             L3_SCORE(14.92, 3.3),
-            L4_SCORE(32.0, 8.5),
+            L4_SCORE(32.0, 10.0),
             L2_REMOVE(12.10, 21.93),
             L3_REMOVE(20.23, 21.93),
             BARGE_SETUP(33.5,21.93),

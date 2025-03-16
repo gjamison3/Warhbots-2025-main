@@ -23,12 +23,6 @@
                       "data": {
                         "commands": [
                           {
-                            "type": "wait",
-                            "data": {
-                              "waitTime": 0.1
-                            }
-                          },
-                          {
                             "type": "named",
                             "data": {
                               "name": "elevatorL4"
@@ -113,15 +107,22 @@
           }
         },
         {
-          "type": "wait",
+          "type": "race",
           "data": {
-            "waitTime": 0.1
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "algaeToBargeCorrectSide"
+            "commands": [
+              {
+                "type": "path",
+                "data": {
+                  "pathName": "algaeToBargeCorrectSide"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "algaeInakeNoTimeout"
+                }
+              }
+            ]
           }
         },
         {
@@ -133,9 +134,22 @@
                 "data": {
                   "commands": [
                     {
-                      "type": "named",
+                      "type": "race",
                       "data": {
-                        "name": "elevatorBarge"
+                        "commands": [
+                          {
+                            "type": "named",
+                            "data": {
+                              "name": "elevatorBarge"
+                            }
+                          },
+                          {
+                            "type": "named",
+                            "data": {
+                              "name": "algaeIntakeLong"
+                            }
+                          }
+                        ]
                       }
                     },
                     {
@@ -163,9 +177,22 @@
           }
         },
         {
-          "type": "named",
+          "type": "race",
           "data": {
-            "name": "elevatorZero"
+            "commands": [
+              {
+                "type": "named",
+                "data": {
+                  "name": "elevatorZero"
+                }
+              },
+              {
+                "type": "path",
+                "data": {
+                  "pathName": "BargeCorrectSideBackOut"
+                }
+              }
+            ]
           }
         }
       ]

@@ -68,7 +68,9 @@ public class AutonContainer {
         NamedCommands.registerCommand("elevatorBarge", new BargeScore(elevator, pivot, shooter, UpperChassisPose.BARGE_SETUP));
         NamedCommands.registerCommand("bargeFling", new BargeFling(shooter, pivot));
         NamedCommands.registerCommand("shoot", shooter.shoot(.5).withTimeout(.5));
-        NamedCommands.registerCommand("algaeIntake", shooter.shoot(-.5).withTimeout(.5));
+        NamedCommands.registerCommand("algaeInakeNoTimeout", shooter.shoot(-.75));
+        NamedCommands.registerCommand("algaeIntakeLong", shooter.shoot(-.75).withTimeout(1.15));
+        NamedCommands.registerCommand("algaeIntake", shooter.shoot(-.75).withTimeout(.75));
     }
 
     public SendableChooser<Command> buildAutonChooser() {
@@ -84,7 +86,7 @@ public class AutonContainer {
         //chooser.addOption("TestingWedL4MOVEBACK", AutoBuilder.buildAuto("TestingWed"));
         chooser.addOption("L4MidProcessor", AutoBuilder.buildAuto("Copy of TestingWed"));
         //chooser.addOption("L4MidBargeRight", AutoBuilder.buildAuto("Copy of TestingWed(BARGE)"));
-        chooser.addOption("L4MidBargeLeft", AutoBuilder.buildAuto("algaeToBargeCorrectSide"));
+        chooser.addOption("L4MidBargeLeft", AutoBuilder.buildAuto("TestingWed(BARGE)CorrectSide"));
         return chooser;
     }
 }
