@@ -5,6 +5,7 @@ import static frc.robot.Constants.ControllerPorts.*;
 
 // Subsystem Imports
 import frc.robot.subsystems.drivetrain.SwerveDrivetrain;
+import frc.robot.wrappers.Limelight;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Pivot;
 import frc.robot.subsystems.Shooter;
@@ -17,6 +18,7 @@ import frc.robot.commands.AlgaeScore;
 import frc.robot.commands.AutonContainer;
 import frc.robot.commands.BargeFling;
 import frc.robot.commands.BargeScore;
+import frc.robot.commands.LockHeadingToReef;
 import frc.robot.commands.SetUpperChassisPose;
 import frc.robot.commands.SwerveDriveCommand;
 import edu.wpi.first.wpilibj.DriverStation;
@@ -34,6 +36,8 @@ public class RobotContainer
     public final Elevator elevator = new Elevator();
     public final Pivot pivot = new Pivot();
     public final Shooter shooter = new Shooter();
+    // The limelight should be configured to ignore non-reef tags
+    public final Limelight limelight = new Limelight("limelight-front");
 
     private final AutonContainer auton = new AutonContainer(this);
     private final SendableChooser<Command> autonChooser = auton.buildAutonChooser();
@@ -76,6 +80,14 @@ public class RobotContainer
 
         // PRESS LB -> Resets gyro heading to current robot heading    
         driverController.leftBumper().onTrue(new InstantCommand(() -> drivetrain.resetHeading()));
+
+        // HOLD A -> Lock heading to nearest in-view apriltag on reef
+        driverController.a().whileTrue(
+            new LockHeadingToReef(drivetrain, 
+            () -> driverController.getLeftX(), 
+            () -> driverController.getLeftY(), 
+            () -> limelight.getFiducialID())
+        );
     }
 
     /** Configures a set of control bindings for the robot's operator */
