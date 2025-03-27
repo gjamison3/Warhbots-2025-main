@@ -31,6 +31,7 @@ public final class Constants {
         public static final int PIVOT_MOTOR = 12;
         public static final int INTAKE_MOTOR = 13;
         public static final int INTAKE_SENSOR = 23;
+        public static final int CLIMBER_MOTOR = 14;
     }
 
     /** IDs used by the swerve drivetrain.

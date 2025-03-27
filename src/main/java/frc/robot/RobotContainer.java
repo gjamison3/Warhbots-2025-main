@@ -8,6 +8,7 @@ import frc.robot.subsystems.drivetrain.SwerveDrivetrain;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Pivot;
 import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.Climber;
 // Command imports
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -34,6 +35,7 @@ public class RobotContainer
     public final Elevator elevator = new Elevator();
     public final Pivot pivot = new Pivot();
     public final Shooter shooter = new Shooter();
+    public final Climber climber = new Climber();
 
     private final AutonContainer auton = new AutonContainer(this);
     private final SendableChooser<Command> autonChooser = auton.buildAutonChooser();
@@ -76,6 +78,9 @@ public class RobotContainer
 
         // PRESS LB -> Resets gyro heading to current robot heading    
         driverController.leftBumper().onTrue(new InstantCommand(() -> drivetrain.resetHeading()));
+
+        driverController.a().whileTrue(climber.climbin(.3));
+        driverController.y().whileTrue(climber.climbout(.3));
     }
 
     /** Configures a set of control bindings for the robot's operator */
