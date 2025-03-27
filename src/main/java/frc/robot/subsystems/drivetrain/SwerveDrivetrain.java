@@ -151,7 +151,7 @@ public class SwerveDrivetrain extends SubsystemBase {
         // Send the processed output to the drivetrain
         sendDrive(outX, outY, outRot, true);
     }
-
+    
     /** Sends driving instructions to the motors that drive the robot.
      *  
      * @param translationX The left/right translation instruction
