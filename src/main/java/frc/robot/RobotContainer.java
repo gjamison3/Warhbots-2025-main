@@ -79,8 +79,8 @@ public class RobotContainer
         // PRESS LB -> Resets gyro heading to current robot heading    
         driverController.leftBumper().onTrue(new InstantCommand(() -> drivetrain.resetHeading()));
 
-        driverController.a().whileTrue(climber.climbin(.3));
-        driverController.y().whileTrue(climber.climbout(.3));
+        driverController.a().whileTrue(climber.climbin(.45));
+        driverController.y().whileTrue(climber.climbout(.45));
     }
 
     /** Configures a set of control bindings for the robot's operator */
