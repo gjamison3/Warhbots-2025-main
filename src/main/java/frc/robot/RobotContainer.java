@@ -8,6 +8,7 @@ import frc.robot.subsystems.drivetrain.SwerveDrivetrain;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Pivot;
 import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.Climber;
 // Command imports
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -34,6 +35,7 @@ public class RobotContainer
     public final Elevator elevator = new Elevator();
     public final Pivot pivot = new Pivot();
     public final Shooter shooter = new Shooter();
+    public final Climber climber = new Climber();
 
     private final AutonContainer auton = new AutonContainer(this);
     private final SendableChooser<Command> autonChooser = auton.buildAutonChooser();
@@ -67,6 +69,7 @@ public class RobotContainer
         // PRESS RT -> Scores coral/algae
         driverController.rightTrigger().whileTrue(shooter.shoot(.5));
 
+        // Press B to shoot algae into barge
         driverController.b().whileTrue(shooter.bargealgaescore(1));
 
         // HOLD LT -> Drive in robot centric mode
@@ -76,6 +79,12 @@ public class RobotContainer
 
         // PRESS LB -> Resets gyro heading to current robot heading    
         driverController.leftBumper().onTrue(new InstantCommand(() -> drivetrain.resetHeading()));
+
+        // Press X to intake reverse
+        driverController.x().whileTrue(shooter.intakereverse(0.4));
+
+        // Press start to push climber out to a set timer
+        driverController.start().whileTrue(climber.climbout(.65));
     }
 
     /** Configures a set of control bindings for the robot's operator */
@@ -92,6 +101,7 @@ public class RobotContainer
         operatorController.pov(180).onTrue(new SetUpperChassisPose(elevator, pivot, UpperChassisPose.L2_REMOVE));
         operatorController.pov(90).onTrue(new AlgaeScore(elevator, pivot, UpperChassisPose.PROCESSOR_SCORE));
         operatorController.pov(270).onTrue(new BargeScore(elevator, pivot, shooter, UpperChassisPose.BARGE_SETUP));
+        operatorController.start().whileTrue(climber.climbin(.65));
     }
         
     
